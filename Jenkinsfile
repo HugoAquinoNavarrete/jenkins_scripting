@@ -2,25 +2,63 @@ pipeline {
 
     agent any
 
+    options {
+      ansiColor('xterm')
+    }
+
     stages {
 
-        stage('Paso 1') {
+        stage('Clona repositorio') {
             steps {
-                echo 'Paso 1 .'
+                git branch: 'main', url: 'https://github.com/HugoAquinoNavarrete/ansible_scripting'
             }
         }
-
-        stage('Paso 2') {
+        
+        stage('Copia llave e inventario del pipeline-05') {
             steps {
-                echo 'Paso 2 ..'
+                sh 'cp ../pipeline-05/key_lab_jenkins .'
+                sh 'cp ../pipeline-05/ansible_inventario.txt .'
             }
         }
-
-        stage('Paso 3') {
+        
+        stage('Crea directorios') {
+            when {
+                equals expected: "crea_directorios", actual: "${accion}"
+            }
             steps {
-                echo 'Paso 3...'
+                sh '/bin/bash ./bin/08-directorios_crea.sh'
             }
         }
-
-    }
+        
+        stage('Borra directorios') {
+            when {
+                equals expected: "borra_directorios", actual: "${accion}"
+            }
+            steps {
+                sh '/bin/bash ./bin/09-directorios_borra.sh'
+            }
+        }
+        
+        stage('Clona repositorio git') {
+            when {
+                equals expected: "clona_repositorio", actual: "${accion}"
+            }
+            
+            steps {
+                sh '/bin/bash ./bin/10-git_clona.sh'
+            }
+        }
+        
+        stage('Copia archivos') {
+            when {
+                equals expected: "copia_archivos", actual: "${accion}"
+            }
+            
+            steps {
+                sh '/bin/bash ./bin/13-archivos_copia.sh'
+            }
+        }
+        
+    }    
 }
+
