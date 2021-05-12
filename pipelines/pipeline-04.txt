@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clona repositorio') {
+            steps {
+                git branch: 'main', url: 'https://github.com/HugoAquinoNavarrete/bash_scripting'
+            }
+        }
+        
+        stage('Imprime un mensaje n veces') {
+            steps {
+                sh '/bin/bash ./bin/07-imprime_palabras_n_veces.sh ${palabra} ${veces}'
+            }
+        }
+
+    }
+}

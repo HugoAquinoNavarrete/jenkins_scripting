@@ -1,0 +1,33 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('Clona repositorio') {
+            steps {
+                git branch: 'main', url: 'https://github.com/HugoAquinoNavarrete/bash_scripting'
+            }
+        }
+        
+        stage('Imprime directorios') {
+            steps {
+                sh 'ls -lR'
+            }
+        }
+
+        stage('Imprime variables') {
+            steps {
+                sh '/bin/bash ./bin/01-imprime_variables.sh'
+            }
+        }
+
+        stage('Imprime variables de ambiente') {
+            steps {
+                sh '/bin/bash ./bin/06-mi_entorno.sh'
+            }
+        }
+
+    }
+}
+

@@ -1,0 +1,55 @@
+pipeline {
+
+    agent any
+
+    options {
+      ansiColor('xterm')
+    }
+
+    stages {
+
+        stage('Clona repositorio') {
+            steps {
+                git branch: 'main', url: 'https://github.com/HugoAquinoNavarrete/ansible_scripting'
+            }
+        }
+        
+        stage('Copia llave e inventario del pipeline-05') {
+            steps {
+                sh 'cp ../pipeline-05/key_lab_jenkins .'
+                sh 'cp ../pipeline-05/ansible_inventario.txt .'
+            }
+        }
+        
+        stage('Lista archivos del repositorio clonado') {
+            when {
+                equals expected: "lista_archivos", actual: "${accion}"
+            }
+            steps {
+                sh 'ls -l'
+                sh 'cat ansible_inventario.txt'
+            }
+        }
+        
+        stage('Haz ping con Ansible a las VMs creadas') {
+            when {
+                equals expected: "haz_ping", actual: "${accion}"
+            }
+            steps {
+                sh '/bin/bash ./bin/01-ping.sh'
+            }
+        }
+        
+        stage('Imprime mensaje con Ansible a las VMs creadas') {
+            when {
+                equals expected: "imprime_mensaje", actual: "${accion}"
+            }
+            
+            steps {
+                sh '/bin/bash ./bin/02-mensaje.sh'
+            }
+        }
+        
+    }    
+}
+

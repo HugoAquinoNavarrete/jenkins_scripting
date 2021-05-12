@@ -1,0 +1,45 @@
+pipeline {
+
+    agent any
+
+    stages {
+
+        stage('# BUILD_ID') {
+            steps {
+                sh 'echo $BUILD_ID'
+            }
+        }
+
+        stage('WORKSPACE') {
+            steps {
+                sh 'echo $WORKSPACE'
+            }
+        }
+
+        stage('Contenido inicial del WORKSPACE') {
+            steps {
+                sh 'ls -lR $WORKSPACE'
+            }
+        }
+
+        stage('Crea archivo file.txt') {
+            steps {
+                sh 'echo "Que ondas aprendiendo Jenkins !!!" > $WORKSPACE/file.txt'
+            }
+        }
+
+        stage('Contenido final del WORKSPACE') {
+            steps {
+                sh 'ls -lR $WORKSPACE'
+            }
+        }
+
+        stage('Contenido archivo file.txt') {
+            steps {
+                sh 'cat $WORKSPACE/file.txt'
+            }
+        }
+    }
+
+}
+
