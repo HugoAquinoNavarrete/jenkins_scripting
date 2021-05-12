@@ -26,7 +26,7 @@ pipeline {
         }
         
 
-        stage("Estableciendo Variables de Entorno") {
+        stage("Ejecutando acciones sobre los directorios") {
             steps {
                 
                 script{
