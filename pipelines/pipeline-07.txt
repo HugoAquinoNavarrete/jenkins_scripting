@@ -59,6 +59,16 @@ pipeline {
             }
         }
         
+        stage('Borra archivos') {
+            when {
+                equals expected: "borra_archivos", actual: "${accion}"
+            }
+            
+            steps {
+                sh '/bin/bash ./bin/22-archivos_borra.sh'
+            }
+        }
+        
     }    
 }
 

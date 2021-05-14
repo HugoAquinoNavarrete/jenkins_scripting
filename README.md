@@ -2,14 +2,22 @@
 
 Repositorio para practicar Jenkins scripting.
 
-## 1. En el directorio `pipelines` 
+## 1. En el directorio `jobs`
+
+Contiene los archivos de los jobs.
+
+## 2. En el directorio `pipelines` 
 
 Contiene los archivos de los pipelines tipo declarativos como código.
 
-## 2. En el directorio `jenkinsfiles` 
+## 3. En el directorio `jenkinsfiles` 
 
 Contiene los archivos de los Jenkinsfiles como código de pipelines declarativos.
 
-## 3. En el directorio `doc`
+## 4. En el directorio `curl`
+
+Contiene los comandos base para ejecutar los jobs, pipelines y jenkinsfiles usando `curl`.
+
+## 5. En el directorio `doc`
 
 Se encuentra la presentación.

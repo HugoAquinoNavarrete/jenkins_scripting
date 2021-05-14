@@ -1,0 +1,1 @@
+curl -X POST http://<ip_publica_vm>:8080/job/pipeline-03/build --user copa_lab:<token_recien_creado>
