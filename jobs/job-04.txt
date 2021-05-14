@@ -1,0 +1,6 @@
+pwd
+cd bin
+ls -l
+bash 00-primer_script.sh
+bash 01-imprime_variables.sh
+bash 06-mi_entorno.sh

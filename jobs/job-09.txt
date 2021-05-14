@@ -1,0 +1,2 @@
+cd bin
+bash 10-mlb_equipos.sh ${year}

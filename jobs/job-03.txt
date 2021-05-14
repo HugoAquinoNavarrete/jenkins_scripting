@@ -1,0 +1,6 @@
+docker version
+docker ps
+docker image ls
+ansible --version
+python3 --version
+terraform --version

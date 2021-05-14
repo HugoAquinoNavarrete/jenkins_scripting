@@ -1,0 +1,12 @@
+echo Paso 1 del job-02
+echo $BUILD_ID
+echo Paso 2 del job-02
+echo $WORKSPACE
+echo Paso 3 del job-02
+ls -lR $WORKSPACE
+echo Paso 4 del job-02
+echo "Que ondas aprendiendo Jenkins !!!" > $WORKSPACE/file.txt 
+echo Paso 5 del job-02
+ls -lR $WORKSPACE
+echo Paso 6 del job-02
+cat $WORKSPACE/file.txt

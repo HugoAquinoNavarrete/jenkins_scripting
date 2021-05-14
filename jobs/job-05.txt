@@ -1,0 +1,5 @@
+echo “Aprendiendo el uso de los webhooks”
+echo “Al hacer un commit al repositorio”
+echo “Se ejecutará este job”
+echo “Este es el ID:” $BUILD_ID
+date

@@ -1,0 +1,4 @@
+echo "Paso 1"
+echo "Hola Jenkins !!!!"
+echo "Paso 2"
+pwd

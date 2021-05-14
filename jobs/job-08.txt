@@ -1,0 +1,1 @@
+bash bin/07-imprime_palabras_n_veces.sh ${palabra} ${veces}
