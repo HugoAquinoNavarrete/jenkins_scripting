@@ -8,7 +8,7 @@ pipeline {
 
     parameters {
         choice(choices: ['Crear', 'Borrar'], description: 'Selecciona la acción para los directorios', name: 'directorios')
-        choice(choices: ['Copia', 'Lista'], description: 'Selecciona la acción para los archivos', name: 'archivos')
+        choice(choices: ['Copia', 'Nada'], description: 'Selecciona la acción para los archivos', name: 'archivos')
     }
 
     stages {
@@ -56,11 +56,6 @@ pipeline {
                        sh '/bin/bash ./bin/13-archivos_copia.sh'
                     }
 
-                    if (params.archivos == "Lista")
-                    {
-                       sh 'ls -lR ..'
-                       sh 'ls -l ..'
-                    }
                 }
             }
         }
