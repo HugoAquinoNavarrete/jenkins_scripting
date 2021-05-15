@@ -1,0 +1,55 @@
+pipeline {
+
+    agent any
+
+    options {
+      ansiColor('xterm')
+    }
+
+    parameters {
+        choice(choices: ['Instala', 'Sube', 'Baja'], description: 'Selecciona la acción para NGINX', name: 'nginx')
+    }
+
+    stages {
+
+        stage('Clona repositorio') {
+            steps {
+                git branch: 'main', url: 'https://github.com/HugoAquinoNavarrete/ansible_scripting'
+            }
+        }
+        
+        stage('Copia llave e inventario del pipeline-05') {
+            steps {
+                sh 'cp ../pipeline-05/key_lab_jenkins .'
+                sh 'cp ../pipeline-05/ansible_inventario.txt .'
+            }
+        }
+        
+
+        stage("Ejecutando acciones sobre NGINX") {
+
+            steps {
+                
+                script{
+
+		    if (params.nginx == "Instala")
+		    {
+                       sh '/bin/bash ./bin/03-nginx_instala.sh'
+                    }
+
+		    if (params.nginx == "Sube")
+		    {
+                       sh '/bin/bash ./bin/04-nginx_sube.sh'
+                    }
+
+                    if (params.nginx == "Baja")
+                    {
+                       sh '/bin/bash ./bin/05-nginx_baja.sh'
+                    }
+
+		}
+            }
+        }
+        
+    }    
+}
