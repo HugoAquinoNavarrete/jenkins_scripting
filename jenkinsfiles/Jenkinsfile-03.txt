@@ -7,7 +7,7 @@ pipeline {
     }
 
     parameters {
-        choice(choices: ['Instala', 'Sube', 'Baja'], description: 'Selecciona la acción para NGINX', name: 'nginx')
+        choice(choices: ['Instala', 'Sube', 'Baja', 'Despliega'], description: 'Selecciona la acción para NGINX', name: 'nginx')
     }
 
     stages {
@@ -45,6 +45,11 @@ pipeline {
                     if (params.nginx == "Baja")
                     {
                        sh '/bin/bash ./bin/05-nginx_baja.sh'
+                    }
+
+                    if (params.nginx == "Despliega")
+                    {
+                       sh '/bin/bash ./bin/07-nginx_despliega.sh'
                     }
 
 		}
