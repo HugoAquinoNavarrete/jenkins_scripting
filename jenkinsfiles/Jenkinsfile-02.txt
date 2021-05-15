@@ -58,8 +58,8 @@ pipeline {
 
                     if (params.archivos == "Lista")
                     {
-                       sh 'ls -lR'
-                       sh 'ls -l'
+                       sh 'ls -lR ..'
+                       sh 'ls -l ..'
                     }
                 }
             }
