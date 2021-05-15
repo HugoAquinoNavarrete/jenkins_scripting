@@ -49,7 +49,9 @@ pipeline {
 
                     if (params.nginx == "Despliega")
                     {
+                       sh '/bin/bash ./bin/05-nginx_baja.sh'
                        sh '/bin/bash ./bin/07-nginx_despliega.sh'
+                       sh '/bin/bash ./bin/04-nginx_sube.sh'
                     }
 
 		}
