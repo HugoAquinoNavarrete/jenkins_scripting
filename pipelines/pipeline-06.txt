@@ -14,10 +14,11 @@ pipeline {
             }
         }
         
-        stage('Copia llave e inventario del pipeline-05') {
+        stage('Copia llave e inventarios del pipeline-05') {
             steps {
                 sh 'cp ../pipeline-05/key_lab_jenkins .'
                 sh 'cp ../pipeline-05/ansible_inventario.txt .'
+                sh 'cp ../pipeline-05/ansible_inventario_win.txt .'
             }
         }
         
@@ -28,6 +29,7 @@ pipeline {
             steps {
                 sh 'ls -l'
                 sh 'cat ansible_inventario.txt'
+                sh 'cat ansible_inventario_win.txt'
             }
         }
         
@@ -37,12 +39,13 @@ pipeline {
             }
             steps {
                 sh '/bin/bash ./bin/01-ping.sh'
+                sh '/bin/bash ./bin/01-ping_win.sh'
             }
         }
         
-        stage('Imprime mensaje con Ansible a las VMs creadas') {
+        stage('Imprime mensaje con Ansible a las VMs Ubuntu creadas') {
             when {
-                equals expected: "imprime_mensaje", actual: "${accion}"
+                equals expected: "imprime_mensaje_ubuntu", actual: "${accion}"
             }
             
             steps {
