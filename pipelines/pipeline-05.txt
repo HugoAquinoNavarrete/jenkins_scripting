@@ -32,10 +32,11 @@ pipeline {
                 equals expected: "crea", actual: "${accion}"
             }
             steps {
-                sh 'terraform apply -var nombre_instancia=${nombre_instancia} -var cantidad_instancias=${cantidad} -var subred_id=${subred_id} -var sg_id=${sg_id} -auto-approve'
+                sh 'terraform apply -var nombre_instancia=${nombre_instancia} -var cantidad_instancias_ubuntu=${cantidad_vm_ubuntu} -var cantidad_instancias_windows=${cantidad_vm_windows} -var subred_id=${subred_id} -var sg_id=${sg_id} -auto-approve'
+                sh 'echo "Inventario VM Ubuntu"'
                 sh 'cat ansible_inventario.txt'
-                sh 'cat key_lab_jenkins'
-                sh 'pwd'
+                sh 'echo "Inventario VM Windows"'
+                sh 'cat ansible_inventario_win.txt'
             }
         }
 
@@ -44,10 +45,9 @@ pipeline {
                 equals expected: "destruye", actual: "${accion}"
             }
             steps {
-                sh 'terraform destroy -auto-approve'
+                sh 'terraform destroy -var subred_id=${subred_id} -var sg_id=${sg_id} -auto-approve'
             }
         }
 
     }
 }
-
