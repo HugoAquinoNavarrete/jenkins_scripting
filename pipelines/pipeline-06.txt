@@ -52,6 +52,16 @@ pipeline {
                 sh '/bin/bash ./bin/02-mensaje.sh'
             }
         }
+
+        stage('Imprime mensaje con Ansible a las VMs Windows creadas') {
+            when {
+                equals expected: "imprime_mensaje_windows", actual: "${accion}"
+            }
+
+            steps {
+                sh '/bin/bash ./bin/02-mensaje_win.sh'
+            }
+        }
         
     }    
 }

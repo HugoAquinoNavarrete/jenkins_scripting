@@ -1,0 +1,1 @@
+curl -X POST http://<ip_publica_vm>:8080/job/pipeline-06/build --user copa_lab:<token_recien_creado> --data-urlencode json='{"parameter": [{"name":"accion", "value":"imprime_mensaje_ubuntu"}]}'

@@ -27,6 +27,7 @@ pipeline {
             }
             steps {
                 sh '/bin/bash ./bin/08-directorios_crea.sh'
+                sh '/bin/bash ./bin/08-directorios_crea_win.sh'
             }
         }
         
