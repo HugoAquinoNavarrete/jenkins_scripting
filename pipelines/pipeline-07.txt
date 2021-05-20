@@ -18,6 +18,7 @@ pipeline {
             steps {
                 sh 'cp ../pipeline-05/key_lab_jenkins .'
                 sh 'cp ../pipeline-05/ansible_inventario.txt .'
+                sh 'cp ../pipeline-05/ansible_inventario_win.txt .'
             }
         }
         
@@ -37,6 +38,7 @@ pipeline {
             }
             steps {
                 sh '/bin/bash ./bin/09-directorios_borra.sh'
+                sh '/bin/bash ./bin/09-directorios_borra_win.sh'
             }
         }
         
@@ -72,4 +74,3 @@ pipeline {
         
     }    
 }
-
