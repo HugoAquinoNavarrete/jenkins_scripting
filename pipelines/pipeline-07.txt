@@ -59,6 +59,7 @@ pipeline {
             
             steps {
                 sh '/bin/bash ./bin/13-archivos_copia.sh'
+                sh '/bin/bash ./bin/13-archivos_copia_win.sh'
             }
         }
         
@@ -69,6 +70,7 @@ pipeline {
             
             steps {
                 sh '/bin/bash ./bin/22-archivos_borra.sh'
+                sh '/bin/bash ./bin/22-archivos_borra_win.sh'
             }
         }
         
