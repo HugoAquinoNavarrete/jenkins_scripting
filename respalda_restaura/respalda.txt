@@ -1,0 +1,20 @@
+* Para conectarse a una VM
+ssh -v -l ubuntu -i <llave> <ip_publica_vm>
+
+* Para conectarse al contenedor
+docker exec -it jenkins /bin/bash
+
+* Para ir al directorio donde están los respaldos
+cd /var/jenkins_home
+
+* Para comprimir el directorio que tiene el respaldo
+tar -zcvf jenkins.tar.gz <directorio>
+
+* Para identificar el ID del contenedor
+docker ps
+
+* Para copiar el archivo del contenedor a la VM
+docker cp <id_contenedor>:/var/jenkins_home/jenkins.tar.gz .
+
+* Para copiar estando en tu laptop la información de la VM a un directorio de la laptop
+scp -i <llave> ubuntu@<ip_publica_vm>:/home/ubuntu/jenkins.tar.gz <directorio_laptop>

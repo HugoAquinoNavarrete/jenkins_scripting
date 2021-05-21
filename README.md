@@ -18,6 +18,10 @@ Contiene los archivos de los Jenkinsfiles como código de pipelines declarativos
 
 Contiene los comandos base para ejecutar los jobs, pipelines y jenkinsfiles usando `curl`.
 
-## 5. En el directorio `doc`
+## 5. En el directorio `respalda_restaura`
+
+Se encuentran las instrucciones y comandos de como respaldar y restaurar la información.
+
+## 6. En el directorio `doc`
 
 Se encuentra la presentación.
