@@ -3,7 +3,7 @@ terraform init
 export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
 export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 if [[ "${accion}" == "crea" ]]; then
-  terraform apply -var nombre_instancia=${nombre_instancia} -var cantidad_instancias_ubuntu=${cantidad_vm_ubuntu} -var cantidad_instancias_windows=${cantidad_vm_windows} -var subred_id=${subred_id} -var sg_id=${sg_id} -auto-approve
+  terraform apply -var nombre_instancia=${nombre_instancia} -var cantidad_instancias_ubuntu=${cantidad_vm_ubuntu} -var cantidad_instancias_windows=${cantidad_vm_windows} -var subred_id=${subred_id} -var sg_id=${sg_id} -var key_name=${nombre_llave} -auto-approve
   echo "Inventario VM Ubuntu"
   cat ansible_inventario.txt
   echo "Inventario VM Windows"

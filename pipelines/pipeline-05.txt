@@ -10,7 +10,7 @@ pipeline {
 
         stage('Clona repositorio') {
             steps {
-                git branch: 'main', url: 'https://github.com/HugoAquinoNavarrete/terraform_jenkins_aws'
+                git branch: 'main', url: 'https://github.com/${usuario_github}/terraform_jenkins_aws'
             }
         }
 
@@ -32,7 +32,7 @@ pipeline {
                 equals expected: "crea", actual: "${accion}"
             }
             steps {
-                sh 'terraform apply -var nombre_instancia=${nombre_instancia} -var cantidad_instancias_ubuntu=${cantidad_vm_ubuntu} -var cantidad_instancias_windows=${cantidad_vm_windows} -var subred_id=${subred_id} -var sg_id=${sg_id} -auto-approve'
+                sh 'terraform apply -var nombre_instancia=${nombre_instancia} -var cantidad_instancias_ubuntu=${cantidad_vm_ubuntu} -var cantidad_instancias_windows=${cantidad_vm_windows} -var subred_id=${subred_id} -var sg_id=${sg_id} -var key_name=${nombre_llave} -auto-approve'
                 sh 'echo "Inventario VM Ubuntu"'
                 sh 'cat ansible_inventario.txt'
                 sh 'echo "Inventario VM Windows"'

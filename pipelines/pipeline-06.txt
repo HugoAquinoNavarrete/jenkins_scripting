@@ -16,7 +16,7 @@ pipeline {
         
         stage('Copia llave e inventarios del pipeline-05') {
             steps {
-                sh 'cp ../pipeline-05/key_lab_jenkins .'
+                sh 'cp ../pipeline-05/${nombre_llave} .'
                 sh 'cp ../pipeline-05/ansible_inventario.txt .'
                 sh 'cp ../pipeline-05/ansible_inventario_win.txt .'
             }
@@ -38,8 +38,8 @@ pipeline {
                 equals expected: "haz_ping", actual: "${accion}"
             }
             steps {
-                sh '/bin/bash ./bin/01-ping.sh'
-                sh '/bin/bash ./bin/01-ping_win.sh'
+                sh '/bin/bash ./bin/01-ping.sh ${nombre_llave}'
+                sh '/bin/bash ./bin/01-ping_win.sh ${nombre_llave}'
             }
         }
         
@@ -49,7 +49,7 @@ pipeline {
             }
             
             steps {
-                sh '/bin/bash ./bin/02-mensaje.sh'
+                sh '/bin/bash ./bin/02-mensaje.sh ${nombre_llave}'
             }
         }
 
@@ -59,7 +59,7 @@ pipeline {
             }
 
             steps {
-                sh '/bin/bash ./bin/02-mensaje_win.sh'
+                sh '/bin/bash ./bin/02-mensaje_win.sh ${nombre_llave}'
             }
         }
         
