@@ -7,6 +7,7 @@ pipeline {
     }
 
     parameters {
+        string(name: 'nombre_llave', defaultValue: '', description: 'Nombre de la llave privada')
         choice(choices: ['Instala', 'Sube', 'Baja', 'Despliega'], description: 'Selecciona la acción para NGINX', name: 'nginx')
     }
 
@@ -20,7 +21,7 @@ pipeline {
         
         stage('Copia llave e inventario del pipeline-05') {
             steps {
-                sh 'cp ../pipeline-05/key_lab_jenkins .'
+                sh 'cp ../pipeline-05/${nombre_llave} .'
                 sh 'cp ../pipeline-05/ansible_inventario.txt .'
             }
         }
@@ -34,24 +35,24 @@ pipeline {
 
 		    if (params.nginx == "Instala")
 		    {
-                       sh '/bin/bash ./bin/03-nginx_instala.sh'
+                       sh '/bin/bash ./bin/03-nginx_instala.sh ${nombre_llave}'
                     }
 
 		    if (params.nginx == "Sube")
 		    {
-                       sh '/bin/bash ./bin/04-nginx_sube.sh'
+                       sh '/bin/bash ./bin/04-nginx_sube.sh ${nombre_llave}'
                     }
 
                     if (params.nginx == "Baja")
                     {
-                       sh '/bin/bash ./bin/05-nginx_baja.sh'
+                       sh '/bin/bash ./bin/05-nginx_baja.sh ${nombre_llave}'
                     }
 
                     if (params.nginx == "Despliega")
                     {
-                       sh '/bin/bash ./bin/05-nginx_baja.sh'
-                       sh '/bin/bash ./bin/07-nginx_despliega.sh'
-                       sh '/bin/bash ./bin/04-nginx_sube.sh'
+                       sh '/bin/bash ./bin/05-nginx_baja.sh ${nombre_llave}'
+                       sh '/bin/bash ./bin/07-nginx_despliega.sh ${nombre_llave}'
+                       sh '/bin/bash ./bin/04-nginx_sube.sh ${nombre_llave}'
                     }
 
 		}

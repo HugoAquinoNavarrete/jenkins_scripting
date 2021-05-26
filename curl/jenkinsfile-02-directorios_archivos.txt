@@ -1,0 +1,1 @@
+curl -X POST http://<ip_publica_vm>:8080/job/jenkinsfile-02/build --user copa_lab:<token_recien_creado> --data-urlencode json='{"parameter": [{"name":"nombre_llave", "value":"<nombre_llave>"},{"name":"directorios", "value":"<accion>"},{"name":"archivos", "value":"<accion>"}]}'
