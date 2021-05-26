@@ -7,6 +7,7 @@ pipeline {
     }
 
     parameters {
+        string(name: 'nombre_llave', description: 'Nombre de la llave privada')
         choice(choices: ['Crear', 'Borrar'], description: 'Selecciona la acción para los directorios', name: 'directorios')
         choice(choices: ['Copia', 'Nada'], description: 'Selecciona la acción para los archivos', name: 'archivos')
     }
@@ -21,7 +22,7 @@ pipeline {
         
         stage('Copia llave e inventario del pipeline-05') {
             steps {
-                sh 'cp ../pipeline-05/key_lab_jenkins .'
+                sh 'cp ../pipeline-05/${nombre_llave} .'
                 sh 'cp ../pipeline-05/ansible_inventario.txt .'
                 sh 'cp ../pipeline-05/ansible_inventario_win.txt .'
             }
@@ -35,29 +36,29 @@ pipeline {
 
 		    if (params.directorios == "Crear")
 		    {
-                       sh '/bin/bash ./bin/08-directorios_crea.sh'
-                       sh '/bin/bash ./bin/08-directorios_crea_win.sh'
+                       sh '/bin/bash ./bin/08-directorios_crea.sh ${nombre_llave}'
+                       sh '/bin/bash ./bin/08-directorios_crea_win.sh ${nombre_llave}'
                     }
 
 		    if (params.directorios == "Borrar")
 		    {
-                       sh '/bin/bash ./bin/09-directorios_borra.sh'
-                       sh '/bin/bash ./bin/09-directorios_borra_win.sh'
+                       sh '/bin/bash ./bin/09-directorios_borra.sh ${nombre_llave}'
+                       sh '/bin/bash ./bin/09-directorios_borra_win.sh ${nombre_llave}'
                     }
 		}
             }
         }
         
 
-        stage("Ejecutando acciones sobre los archivos") {
+        stage("Ejecutando acciones de copiado de archivos") {
             steps {
 
                 script{
 
                     if (params.archivos == "Copia")
                     {
-                       sh '/bin/bash ./bin/13-archivos_copia.sh'
-                       sh '/bin/bash ./bin/13-archivos_copia_win.sh'
+                       sh '/bin/bash ./bin/13-archivos_copia.sh ${nombre_llave}'
+                       sh '/bin/bash ./bin/13-archivos_copia_win.sh ${nombre_llave}'
                     }
 
                 }
