@@ -8,8 +8,8 @@ pipeline {
 
     parameters {
         string(name: 'nombre_llave', defaultValue: '', description: 'Nombre de la llave privada')
-        choice(choices: ['Crear', 'Borrar'], description: 'Selecciona la acción para los directorios', name: 'directorios')
-        choice(choices: ['Copia', 'Nada'], description: 'Selecciona la acción para los archivos', name: 'archivos')
+        choice(choices: ['Crear', 'Borrar', 'Nada'], description: 'Selecciona la acción para los directorios', name: 'directorios')
+        choice(choices: ['Copia', 'Borrar', 'Nada'], description: 'Selecciona la acción para los archivos', name: 'archivos')
     }
 
     stages {
@@ -45,12 +45,13 @@ pipeline {
                        sh '/bin/bash ./bin/09-directorios_borra.sh ${nombre_llave}'
                        sh '/bin/bash ./bin/09-directorios_borra_win.sh ${nombre_llave}'
                     }
+
 		}
             }
         }
         
 
-        stage("Ejecutando acciones de copiado de archivos") {
+        stage("Ejecutando acciones en los archivos") {
             steps {
 
                 script{
@@ -59,6 +60,12 @@ pipeline {
                     {
                        sh '/bin/bash ./bin/13-archivos_copia.sh ${nombre_llave}'
                        sh '/bin/bash ./bin/13-archivos_copia_win.sh ${nombre_llave}'
+                    }
+
+                    if (params.archivos == "Borrar")
+                    {
+                       sh '/bin/bash ./bin/22-archivos_borra.sh ${nombre_llave}'
+                       sh '/bin/bash ./bin/22-archivos_borra_win.sh ${nombre_llave}'
                     }
 
                 }
