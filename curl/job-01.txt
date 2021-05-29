@@ -1,1 +1,3 @@
-curl -X POST http://<ip_publica_vm>:8080/job/job-01/build --user copa_lab:<token_recien_creado>
+curl -X POST \
+http://<ip_publica_vm>:8080/job/job-01/build \
+--user copa_lab:<token_recien_creado>

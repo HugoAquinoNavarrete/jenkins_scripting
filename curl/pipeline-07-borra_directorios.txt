@@ -1,1 +1,7 @@
-curl -X POST http://<ip_publica_vm>:8080/job/pipeline-07/build --user copa_lab:<token_recien_creado> --data-urlencode json='{"parameter": [{"name":"accion", "value":"borra_directorios"},{"name":"nombre_llave", "value":"<nombre_llave>"}]}'
+curl -X \
+POST http://<ip_publica_vm>:8080/job/pipeline-07/build \
+--user copa_lab:<token_recien_creado> \
+--data-urlencode json='{"parameter": [
+{"name":"accion", "value":"borra_directorios"},
+{"name":"nombre_llave", "value":"<nombre_llave>"}
+]}'

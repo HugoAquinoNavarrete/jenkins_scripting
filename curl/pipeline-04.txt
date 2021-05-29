@@ -1,1 +1,6 @@
-curl -X POST http://<ip_publica_vm>:8080/job/pipeline-01/build --user copa_lab:<token_recien_creado> --data-urlencode json='{"parameter": [{"name":"palabra", "value":"ejecutando_pipeline_desde_curl"},{"name":"veces", "value":"25"}]}'
+curl -X POST \
+http://<ip_publica_vm>:8080/job/pipeline-01/build \
+--user copa_lab:<token_recien_creado> --data-urlencode json='{"parameter": [
+{"name":"palabra", "value":"ejecutando_pipeline_desde_curl"},
+{"name":"veces", "value":"25"}
+]}'

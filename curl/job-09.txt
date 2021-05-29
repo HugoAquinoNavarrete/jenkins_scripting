@@ -1,1 +1,6 @@
-curl -X POST http://<ip_publica_vm>:8080/job/job-09/build --user copa_lab:<token_recien_creado> --data-urlencode json='{"parameter": [{"name":"year", "value":"1921"}]}'
+curl -X POST \
+http://<ip_publica_vm>:8080/job/job-09/build \
+--user copa_lab:<token_recien_creado> \
+--data-urlencode json='{"parameter": [
+{"name":"year", "value":"1921"}
+]}'
